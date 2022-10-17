@@ -1,13 +1,61 @@
+class Calculator{
+  constructor(displayRes){
+    this.displayRes = displayRes
+    this.currentOperand = 0
+    this.previousOperand = 0
+    this.clear()
+  }
+  clear(){
+    this.currentOperand = 0
+    this.previousOperand = 0
+    this.operation = null
+  }
+  del(){
+    this.currentOperand = 0
+    this.previousOperand = 0
+    displayRes.innerHTML = this.previousOperand
+    btnDelete.innerHTML = "AC"
+  }
+  addDigit(digit){
+    if(this.currentOperand == 0){
+      this.currentOperand = digit
+      btnDelete.innerHTML = "C"
+    } 
+    else if(this.currentOperand != 0){
+      this.currentOperand = this.currentOperand + digit
+    } 
+    console.log(this.currentOperand)
+  }
+  getOperator(operator, buttonClass){
+    let buttonOperator = document.querySelector(`.${buttonClass}`)
+    buttonOperator.style.backgroundColor = "white";
+    this.operator = operator
+    this.previousOperand = this.currentOperand
+    this.currentOperand = 0
+  }
+  updateDis(){
+    console.log("updateDis")
+    displayRes.innerHTML = this.currentOperand
+  }
+}
 
-let btns = document.querySelector(".grid-container")
+
+const btns = document.querySelector(".grid-container")
+const displayRes = document.querySelector("#result")
+const btnDelete = document.querySelector(".btn-delete")
+
+const calc = new Calculator(displayRes)
 
 btns.addEventListener('click', (e)=>{
   switch (e.target.className) {
   case "btn-digit":
-    pressDigit(e.target.textContent)
+    calc.addDigit(e.target.textContent)
+    calc.updateDis()
     break;
-  case 1:
-    day = "Monday";
+  case "btn-operator":
+    console.log(e.target)
+    this.style.backgroundColor = "red";
+    calc.getOperator(e.target.textContent, e.target.className)
     break;
   case 2:
      day = "Tuesday";
@@ -16,7 +64,7 @@ btns.addEventListener('click', (e)=>{
     day = "Wednesday";
     break;
   case "btn-delete":
-    del()
+    calc.del()
     break;
   case 5:
     day = "Friday";
@@ -26,18 +74,6 @@ btns.addEventListener('click', (e)=>{
 }
 });
 
-function pressDigit(digit){
-	displayRes = document.querySelector("#result")
-	if(displayRes.textContent == 0){
-		displayRes.innerHTML = digit
-	}else {
-		displayRes.innerHTML = displayRes.textContent + digit
-	}
-}
 
-function del(){
-	displayRes = document.querySelector("#result")
-	displayRes.innerHTML = 0
-}
 
 

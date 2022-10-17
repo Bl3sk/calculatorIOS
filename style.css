@@ -41,21 +41,26 @@ body {
     justify-content: center;
     align-items: center;
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 25px;
 }
 
 .btn-operator{
-	background-color: orange;
-	
-}
+	background-color: orange;}
+.btn-operator:hover{
+	background-color: white; color: orange}
 
 .btn-delete, .btn-plusMinus, .btn-percent{
-	background-color: white;
+	background-color: lightgray;
 	color: black;
 }
+.btn-delete:hover, .btn-plusMinus:hover, .btn-percent:hover{
+	background-color: white;}
 
 .btn-digit, .btn-decPoint{
-	background-color: grey;
+	background-color: darkslategrey;
+}
+.btn-digit:hover, .btn-decPoint:hover{
+	background-color: gray;
 }
 
 #btn-zero{grid-column: 1 / 3; border-radius: 15px; width: 90%;}
